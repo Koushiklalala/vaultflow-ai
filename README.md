@@ -5,10 +5,12 @@
 [![Gemma 2](https://img.shields.io/badge/Open--Weight-Gemma_2-4facfe.svg)](https://ai.google.dev/gemma)
 [![TabPFN](https://img.shields.io/badge/Foundation_Model-TabPFN--3.5-f59e0b.svg)](https://priorlabs.ai)
 [![Zero Cloud Leak](https://img.shields.io/badge/Privacy-100%25_Air--Gapped-10b981.svg)](#sovereign-privacy)
-[![Render Ready](https://img.shields.io/badge/Deploy-Render_Blueprint-46e3b7.svg)](render.yaml)
+[![Live on Render](https://img.shields.io/badge/Live_Demo-vaultflow--ai.onrender.com-46e3b7.svg)](https://vaultflow-ai.onrender.com)
 
 > Built for the **Hacktoberfest Open-Source AI Challenge: Week 2 — Side Hustle**.  
-> An open-weight financial copilot that runs 100% locally on a laptop, ensuring sensitive freelancer client invoices, rates, and NDAs never leave the device while delivering zero-shot tabular cashflow forecasting.
+> An open-weight financial copilot that runs 100% locally on a laptop, ensuring sensitive freelancer client invoices, rates, and NDAs never leave the device while delivering zero-shot tabular cashflow forecasting.  
+>  
+> 🌐 **Live Production Deployment**: **[https://vaultflow-ai.onrender.com](https://vaultflow-ai.onrender.com)** (Deployed on Render)
 
 ---
 
@@ -66,9 +68,13 @@ graph TD
 
 ---
 
-## ⚡ Quickstart (Run Locally in 5 Seconds)
+## ⚡ Quickstart
 
-VaultFlow AI is built with zero mandatory external build steps:
+### Option A: Try the Live Deployment (Instant)
+Access the 24/7 production application directly: **[https://vaultflow-ai.onrender.com](https://vaultflow-ai.onrender.com)**
+
+### Option B: Run Locally (100% Air-Gapped)
+VaultFlow AI can also run completely offline with zero mandatory build steps:
 
 ```bash
 # 1. Clone repository

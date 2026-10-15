@@ -35,8 +35,9 @@ VaultFlow AI is packaged as an independent micro-SaaS:
 
 ## Demo
 
-- **Live Web Interface**: [http://localhost:3000](http://localhost:3000) (Self-contained, 100% offline-capable)
-- **1-Click Render Cloud Deployment**: Included [`render.yaml`](file:///d:/Projects/Hactoberfest/Week%202%20Event/render.yaml) blueprint and [`Dockerfile`](file:///d:/Projects/Hactoberfest/Week%202%20Event/Dockerfile).
+- **Live Production App (Render Cloud)**: **[https://vaultflow-ai.onrender.com](https://vaultflow-ai.onrender.com)** (Live 24/7 on Render Starter compute)
+- **Local / Air-Gapped Mode**: Runs 100% locally on `http://localhost:3000` with zero cloud leakage.
+- **1-Click Render Blueprint**: Included [`render.yaml`](https://github.com/Koushiklalala/vaultflow-ai/blob/main/render.yaml) blueprint and [`Dockerfile`](https://github.com/Koushiklalala/vaultflow-ai/blob/main/Dockerfile).
 - **Interactive Multi-Persona Sandbox**: Switch between **Alex Rivera** (Brand Designer), **Marcus Chen** (Cloud Engineer), and **Elena Rostova** (Commercial Photographer) with real-time reactive financial ledgers.
 
 ### Visual Feature Tour:
