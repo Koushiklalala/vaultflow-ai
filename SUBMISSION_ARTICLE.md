@@ -113,11 +113,11 @@ When closed APIs deprecate models, alter system prompts, or raise token prices, 
 
 ## My Agent Session
 
-This entire application was architected, built, and verified end-to-end using an autonomous AI pair programmer and DevRelay session tracking. 
-Every step—from designing the glassmorphic CSS tokens and writing the TabPFN Bayesian canvas chart engine to instrumenting Sentry traces and verifying 0 console errors—was captured directly in the agent trajectory.
+This entire application was architected, built, and verified end-to-end using an autonomous AI pair programmer and DevRelay session tracking. Every step—from designing the glassmorphic CSS tokens and writing the TabPFN Bayesian canvas chart engine to instrumenting Sentry traces and deploying to Render—was captured directly in the agent trajectory.
 
-*You can inspect and review the recorded agent development session via DevRelay:*
-`{% agent_session 55bcfe2a-f0aa-4d30-9704-43ef2ba7b109 %}`
+{% agent_session 895 %}
+
+*Interactive Transcript URL: [https://dev.to/agent_sessions/building-vaultflow-ai-sovereign-cashflow-forecaster-tax-intelligence-engine-uzicn3](https://dev.to/agent_sessions/building-vaultflow-ai-sovereign-cashflow-forecaster-tax-intelligence-engine-uzicn3)*
 
 ---
 
@@ -154,13 +154,3 @@ I am officially entering VaultFlow AI into the following challenge tracks:
 3. **Best Use of Render ($200 - Featured)**: Includes a full `render.yaml` 1-click blueprint and multi-stage `Dockerfile` to deploy VaultFlow AI as a self-hosted cloud instance.
 4. **Best Use of Sentry Agent Tracing ($100 - Partner)**: Implements OpenTelemetry-compatible agent tracing across Gemma, TabPFN, and ElevenLabs operations, visualized through an interactive execution waterfall in the UI.
 5. **Best Use of ElevenLabs ($100 - Partner)**: Features voice-to-ledger expense dictation with natural speech recognition and audio confirmation feedback.
-
----
-
-## 🤖 Agent Development Session (DevRelay)
-
-The full agent session tracing the step-by-step architecture, code generation, TabPFN machine learning integration, and Render cloud deployment has been saved to DEV via DevRelay:
-
-{% agent_session 895 %}
-
-*Session Transcript URL: [https://dev.to/agent_sessions/building-vaultflow-ai-sovereign-cashflow-forecaster-tax-intelligence-engine-uzicn3](https://dev.to/agent_sessions/building-vaultflow-ai-sovereign-cashflow-forecaster-tax-intelligence-engine-uzicn3)*
