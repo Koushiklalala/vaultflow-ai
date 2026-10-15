@@ -6,7 +6,9 @@
 
 class TabPFNEngine {
   constructor() {
-    this.apiEndpoint = 'http://127.0.0.1:8000';
+    // If running on Render or unified host, use current origin; else fallback to local backend port
+    const isLocalStatic = window.location.origin.includes(':3000') || window.location.protocol === 'file:';
+    this.apiEndpoint = isLocalStatic ? 'http://127.0.0.1:8000' : window.location.origin;
     this.serviceOnline = false;
     this.checkService();
   }
@@ -14,8 +16,8 @@ class TabPFNEngine {
   async checkService() {
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 600);
-      const res = await fetch(`${this.apiEndpoint}/`, { signal: controller.signal });
+      const timeoutId = setTimeout(() => controller.abort(), 1200);
+      const res = await fetch(`${this.apiEndpoint}/api/health`, { signal: controller.signal });
       clearTimeout(timeoutId);
       if (res.ok) {
         this.serviceOnline = true;

@@ -15,8 +15,8 @@ RUN pip install --no-cache-dir -r /app/backend/requirements.txt
 # Copy application files
 COPY . /app/
 
-EXPOSE 8000
-EXPOSE 3000
+ENV PORT=10000
+EXPOSE 10000
 
-# Start lightweight static file server + TabPFN microservice
-CMD ["sh", "-c", "python -m http.server 3000 --directory /app & python /app/backend/tabpfn_service.py"]
+# Start unified Full-Stack Web Service (FastAPI + TabPFN API + Frontend)
+CMD ["sh", "-c", "uvicorn backend.tabpfn_service:app --host 0.0.0.0 --port ${PORT:-10000}"]

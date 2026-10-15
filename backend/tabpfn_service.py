@@ -11,6 +11,8 @@ import pandas as pd
 from typing import List, Dict, Any, Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 app = FastAPI(
@@ -62,7 +64,8 @@ class CashflowForecastRequest(BaseModel):
     expense_reduction_pct: float = 0.0
 
 
-@app.get("/")
+@app.get("/api/health")
+@app.get("/health")
 def health_check():
     return {
         "status": "online",
@@ -178,6 +181,30 @@ def forecast_cashflow(req: CashflowForecastRequest):
     }
 
 
+# ==============================================================================
+# Unified Full-Stack Static Assets & Dashboard Delivery (Single Render Service)
+# ==============================================================================
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+css_dir = os.path.join(BASE_DIR, "css")
+js_dir = os.path.join(BASE_DIR, "js")
+data_dir = os.path.join(BASE_DIR, "data")
+index_file = os.path.join(BASE_DIR, "index.html")
+
+if os.path.exists(css_dir):
+    app.mount("/css", StaticFiles(directory=css_dir), name="css")
+if os.path.exists(js_dir):
+    app.mount("/js", StaticFiles(directory=js_dir), name="js")
+if os.path.exists(data_dir):
+    app.mount("/data", StaticFiles(directory=data_dir), name="data")
+
+@app.get("/")
+async def serve_index():
+    if os.path.exists(index_file):
+        return FileResponse(index_file)
+    return {"message": "VaultFlow AI Service Online"}
+
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
