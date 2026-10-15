@@ -7,6 +7,7 @@ services:
   - type: web
     name: vaultflow-ai-web
     env: static
+    plan: free
     buildCommand: ""
     staticPublishPath: .
     routes:
@@ -24,15 +25,16 @@ services:
         name: Referrer-Policy
         value: strict-origin-when-cross-origin
 
-  # Optional Private TabPFN Python Microservice
-  - type: web
-    name: vaultflow-tabpfn-api
-    env: python
-    rootDir: backend
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn tabpfn_service:app --host 0.0.0.0 --port $PORT
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.9
-      - key: TABPFN_DEVICE
-        value: cpu
+  # Optional TabPFN Python Microservice (Uncomment if deploying backend on a verified Render account)
+  # - type: web
+  #   name: vaultflow-tabpfn-api
+  #   env: python
+  #   plan: free
+  #   rootDir: backend
+  #   buildCommand: pip install -r requirements.txt
+  #   startCommand: uvicorn tabpfn_service:app --host 0.0.0.0 --port $PORT
+  #   envVars:
+  #     - key: PYTHON_VERSION
+  #       value: 3.11.9
+  #     - key: TABPFN_DEVICE
+  #       value: cpu
