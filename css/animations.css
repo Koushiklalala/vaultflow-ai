@@ -1,0 +1,134 @@
+/* ==========================================================================
+   VaultFlow AI — Animations & Micro-Interactions
+   Subtle pulses, radar sweeps, shimmer skeletons, and view transitions
+   ========================================================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes radarSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.shimmer-loading {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+  border-radius: var(--radius-sm);
+}
+
+.glow-hover {
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.glow-hover:hover {
+  box-shadow: 0 0 25px rgba(79, 172, 254, 0.2);
+  border-color: rgba(79, 172, 254, 0.4);
+}
+
+/* TabPFN Probability Radar Scanning Effect */
+.radar-scanner {
+  position: relative;
+  overflow: hidden;
+}
+
+.radar-scanner::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, rgba(245, 158, 11, 0.15) 0deg, transparent 60deg, transparent 360deg);
+  animation: radarSpin 4s linear infinite;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Audio Waveform Simulator Bars */
+.audio-wave-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 48px;
+}
+
+.audio-bar {
+  width: 4px;
+  background: var(--grad-purple);
+  border-radius: 2px;
+  height: 8px;
+  transition: height 0.1s ease;
+}
+
+.audio-wave-container.recording .audio-bar:nth-child(1) { animation: wave 0.8s ease-in-out infinite 0.1s; }
+.audio-wave-container.recording .audio-bar:nth-child(2) { animation: wave 0.8s ease-in-out infinite 0.25s; }
+.audio-wave-container.recording .audio-bar:nth-child(3) { animation: wave 0.8s ease-in-out infinite 0.15s; }
+.audio-wave-container.recording .audio-bar:nth-child(4) { animation: wave 0.8s ease-in-out infinite 0.35s; }
+.audio-wave-container.recording .audio-bar:nth-child(5) { animation: wave 0.8s ease-in-out infinite 0.2s; }
+.audio-wave-container.recording .audio-bar:nth-child(6) { animation: wave 0.8s ease-in-out infinite 0.4s; }
+.audio-wave-container.recording .audio-bar:nth-child(7) { animation: wave 0.8s ease-in-out infinite 0.18s; }
+.audio-wave-container.recording .audio-bar:nth-child(8) { animation: wave 0.8s ease-in-out infinite 0.3s; }
+
+@keyframes wave {
+  0%, 100% { height: 6px; }
+  50% { height: 38px; }
+}

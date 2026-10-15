@@ -1,0 +1,12 @@
+invoice_id,client_name,industry,amount,contract_type,payment_terms_days,historical_avg_delay,delinquent_overdue_flag,notes
+INV-2025-012,Acme Health Inc,Healthcare,4500.00,Retainer,30,-12,0,Enterprise payer; pays 12 days before due date
+INV-2025-034,Acme Health Inc,Healthcare,4500.00,Retainer,30,-14,0,Direct deposit automated
+INV-2025-055,FinScale Ventures,Fintech,3200.00,Milestone,30,12,0,Series A startup; approved after board meeting
+INV-2025-089,FinScale Ventures,Fintech,5800.00,Milestone,30,28,1,Delayed payment due to CFO change
+INV-2026-004,Stealth AI Labs,AI/ML,12000.00,FixedScope,30,45,1,Extended delay; milestone review dispute
+INV-2026-018,Nova Media Studio,Agency,2000.00,Deposit,15,5,0,Paid within 20 days
+INV-2026-029,Kona Coffee Roasters,Retail,3400.00,Project,30,-2,0,Paid promptly via ACH
+INV-2026-041,CloudVibe Systems,Enterprise,12500.00,Contract,30,0,0,Standard Net-30 compliant vendor portal
+INV-2026-062,Luxe Apparel NYC,Fashion,2900.00,E-commerce,30,18,0,Paid on day 48
+INV-2026-079,FinScale Ventures,Fintech,5800.00,BrandGuidelines,30,35,1,Current overdue invoice; high risk delinquent
+INV-2026-081,Acme Health Inc,Healthcare,4500.00,Retainer,30,-10,0,Current active invoice; expected on time

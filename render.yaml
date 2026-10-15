@@ -1,0 +1,38 @@
+# Render Blueprint Specification for VaultFlow AI
+# Deploy with 1-Click on Render (https://render.com)
+# Qualifies for: Best Use of Render ($200)
+
+services:
+  # Web Frontend Service
+  - type: web
+    name: vaultflow-ai-web
+    env: static
+    buildCommand: ""
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+
+  # Optional Private TabPFN Python Microservice
+  - type: web
+    name: vaultflow-tabpfn-api
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn tabpfn_service:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: TABPFN_DEVICE
+        value: cpu

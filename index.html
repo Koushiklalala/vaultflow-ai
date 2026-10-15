@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaultFlow AI — Sovereign Cashflow Forecaster & Tax Engine</title>
+  <meta name="description" content="A local-first, zero-leak financial copilot and cashflow forecaster for freelancers and solopreneurs, powered by Gemma 2 and TabPFN.">
+  
+  <!-- Design System Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div id="app-root">
+    
+    <!-- Left Navigation Sidebar -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <!-- Brand Logo & Header -->
+      <div class="brand-container">
+        <div class="brand-logo-icon">⚡</div>
+        <div class="brand-text">
+          <h1>VaultFlow AI</h1>
+          <span class="brand-tagline">Sovereign Financial Copilot</span>
+        </div>
+      </div>
+
+      <!-- Persona Switcher -->
+      <div class="persona-selector-card">
+        <div class="persona-label">
+          <span>Active Persona</span>
+          <span style="color: var(--accent-cyan);">● Live</span>
+        </div>
+        <select id="persona-select" class="persona-select-input" aria-label="Select Freelancer Persona">
+          <option value="alex_designer">🎨 Alex Rivera (UI/UX Designer)</option>
+          <option value="marcus_dev">💻 Marcus Chen (Full-Stack Dev)</option>
+          <option value="elena_photo">📷 Elena Rostova (Photographer)</option>
+        </select>
+      </div>
+
+      <!-- Main Navigation Menu -->
+      <nav class="nav-menu" aria-label="Primary Navigation">
+        <a class="nav-link active" data-view="overview" id="nav-overview">
+          <span class="nav-icon">📊</span>
+          <span>Command Center</span>
+        </a>
+        <a class="nav-link" data-view="invoices" id="nav-invoices">
+          <span class="nav-icon">📄</span>
+          <span>Invoice & Receipt Auditor</span>
+          <span class="nav-badge badge-ai">Gemma 2</span>
+        </a>
+        <a class="nav-link" data-view="tabpfn" id="nav-tabpfn">
+          <span class="nav-icon">📈</span>
+          <span>Cashflow & Risk Radar</span>
+          <span class="nav-badge badge-ai">TabPFN</span>
+        </a>
+        <a class="nav-link" data-view="tax" id="nav-tax">
+          <span class="nav-icon">⚖️</span>
+          <span>Schedule C Tax Center</span>
+        </a>
+        <a class="nav-link" data-view="voice" id="nav-voice">
+          <span class="nav-icon">🎙️</span>
+          <span>Voice Expense Log</span>
+          <span class="nav-badge badge-ai">ElevenLabs</span>
+        </a>
+        <a class="nav-link" data-view="privacy" id="nav-privacy">
+          <span class="nav-icon">🛡️</span>
+          <span>Sovereign Privacy Guard</span>
+          <span class="nav-badge badge-guard">0% Leak</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Footer with Real-Time Privacy Heartbeat -->
+      <div class="sidebar-footer">
+        <div class="privacy-pill-indicator">
+          <div class="privacy-dot"></div>
+          <div class="privacy-pill-text">
+            <span>Air-Gapped Local Mode</span>
+            <span class="privacy-subtext">Zero Outbound Telemetry</span>
+          </div>
+        </div>
+        <button id="btn-commercial-license" class="btn btn-secondary btn-sm" style="width: 100%;">
+          ⭐ Commercial License ($29)
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-wrapper">
+      <!-- Top Sticky Header -->
+      <header class="top-header">
+        <div class="header-title-box">
+          <h2 id="view-title">Financial Command Center</h2>
+          <p id="view-subtitle">Real-time local cashflow projection and Schedule C tax deduction audit</p>
+        </div>
+        <div class="header-actions">
+          <span class="engine-badge gemma">Gemma 2 9B (Local)</span>
+          <span class="engine-badge tabpfn">TabPFN 3.5 Ready</span>
+          <button id="btn-quick-scan" class="btn btn-primary btn-sm">
+            <span>+ Scan Receipt</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- View Containers -->
+      <div class="view-container">
+
+        <!-- ==========================================
+             VIEW 1: OVERVIEW COMMAND CENTER
+             ========================================== -->
+        <section id="view-overview" class="view-section active">
+          <!-- Top 4 Financial Metric Cards -->
+          <div class="grid-cols-4" style="margin-bottom: 24px;">
+            <div class="card-glass stat-card">
+              <div class="stat-top">
+                <span class="stat-label">Available Liquidity</span>
+                <div class="stat-icon-wrapper emerald">💵</div>
+              </div>
+              <div class="stat-value mono" id="stat-cash">$14,820</div>
+              <div class="stat-footer">
+                <span class="stat-trend up">↑ Healthy</span>
+                <span>In checking & escrow</span>
+              </div>
+            </div>
+
+            <div class="card-glass stat-card">
+              <div class="stat-top">
+                <span class="stat-label">30-Day TabPFN Runway</span>
+                <div class="stat-icon-wrapper">⏳</div>
+              </div>
+              <div class="stat-value mono" id="stat-runway">4.5 mo</div>
+              <div class="stat-footer">
+                <span class="stat-trend up">↑ +1.2 mo</span>
+                <span>Safe burn threshold</span>
+              </div>
+            </div>
+
+            <div class="card-glass stat-card">
+              <div class="stat-top">
+                <span class="stat-label">Tax Saved (Schedule C)</span>
+                <div class="stat-icon-wrapper violet">🛡️</div>
+              </div>
+              <div class="stat-value mono" id="stat-tax-saved">$5,240</div>
+              <div class="stat-footer">
+                <span class="stat-trend up">↑ 30% Est.</span>
+                <span>Deductions verified</span>
+              </div>
+            </div>
+
+            <div class="card-glass stat-card">
+              <div class="stat-top">
+                <span class="stat-label">Pending Invoices</span>
+                <div class="stat-icon-wrapper amber">⏳</div>
+              </div>
+              <div class="stat-value mono" id="stat-pending-invoices">$12,300</div>
+              <div class="stat-footer">
+                <span class="stat-trend down">1 High Risk</span>
+                <span>TabPFN radar alert</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle Split: TabPFN Cashflow Forecast + Category Doughnut -->
+          <div class="grid-split-8-4" style="margin-bottom: 24px;">
+            <div class="card-glass card-glass-glow">
+              <div class="card-header">
+                <div class="card-header-left">
+                  <div class="stat-icon-wrapper">📈</div>
+                  <div>
+                    <h3 class="card-title">90-Day Probabilistic Cashflow Forecast</h3>
+                    <p class="card-subtitle">Zero-shot Bayesian projection computed locally by TabPFN-3.5</p>
+                  </div>
+                </div>
+                <span class="engine-badge tabpfn">TabPFN Foundation Model</span>
+              </div>
+              <div style="height: 240px; position: relative;">
+                <canvas id="chart-cashflow" style="width: 100%; height: 100%;"></canvas>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; font-size: 0.78rem; color: var(--text-dim);">
+                <span>Blue shaded envelope represents 80% confidence interval</span>
+                <span style="color: var(--accent-cyan); font-weight: 600;">Projection: +$6,380 net growth</span>
+              </div>
+            </div>
+
+            <div class="card-glass">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Schedule C Write-Offs</h3>
+                  <p class="card-subtitle">Audited expenses by IRS line</p>
+                </div>
+                <span class="engine-badge gemma">Gemma 2</span>
+              </div>
+              <div style="height: 200px; position: relative;">
+                <canvas id="chart-categories" style="width: 100%; height: 100%;"></canvas>
+              </div>
+              <div style="text-align: center; margin-top: 10px;">
+                <span style="font-size: 0.8rem; color: #34d399; font-weight: 600;">100% Audit Readiness Score</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom: Anomaly & Risk Alerts -->
+          <div class="card-glass">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">TabPFN Anomaly & Subscription Radar</h3>
+                <p class="card-subtitle">Automated tabular pattern detection from raw bank CSV records</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btn-goto-tabpfn">View Deep Analysis →</button>
+            </div>
+            <div id="overview-anomaly-list" style="display: flex; flex-direction: column; gap: 10px;">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 2: INVOICE & RECEIPT AUDITOR
+             ========================================== -->
+        <section id="view-invoices" class="view-section">
+          <div class="grid-split-7-5">
+            <!-- Left: Document Uploader & Interactive Samples -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div class="card-glass">
+                <div class="card-header">
+                  <div>
+                    <h3 class="card-title">Drop Receipt or Invoice Document</h3>
+                    <p class="card-subtitle">Zero data leaves this device. Parsed locally with Gemma 2.</p>
+                  </div>
+                  <span class="engine-badge local">Air-Gapped</span>
+                </div>
+
+                <div class="dropzone-container" id="invoice-dropzone">
+                  <div class="dropzone-icon">📥</div>
+                  <div class="dropzone-text">
+                    <h4>Drag & drop PDF, JPG, or PNG receipt here</h4>
+                    <p>Or click to browse your local file system</p>
+                  </div>
+                  <input type="file" id="file-input-invoice" style="display: none;" accept="image/*,application/pdf,.txt">
+                  <button class="btn btn-secondary btn-sm" type="button" onclick="document.getElementById('file-input-invoice').click()">
+                    Browse Files
+                  </button>
+                </div>
+
+                <!-- Mode Selector: Samples vs Custom Paste -->
+                <div style="margin-top: 18px; border-top: 1px solid var(--border-subtle); padding-top: 14px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); font-weight: 600; letter-spacing: 0.05em;">
+                      Or Test Instant Freelancer Receipts:
+                    </span>
+                    <button id="btn-toggle-custom-paste" class="btn btn-secondary btn-sm" style="font-size: 0.72rem; padding: 3px 8px;">
+                      ✍️ Paste Custom Receipt
+                    </button>
+                  </div>
+                  <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <button class="btn btn-secondary btn-sm sample-invoice-btn" data-sample="sample_adobe">
+                      🎨 Adobe Creative Cloud ($659.88)
+                    </button>
+                    <button class="btn btn-secondary btn-sm sample-invoice-btn" data-sample="sample_coffee">
+                      ☕ Blue Bottle Client Lunch ($64.50)
+                    </button>
+                    <button class="btn btn-secondary btn-sm sample-invoice-btn" data-sample="sample_aws">
+                      ☁️ AWS Cloud Servers ($384.50)
+                    </button>
+                  </div>
+
+                  <!-- Collapsible Custom Paste Box -->
+                  <div id="custom-paste-container" style="display: none; margin-top: 12px; flex-direction: column; gap: 8px;">
+                    <textarea id="custom-receipt-textarea" rows="4" style="width: 100%; background: rgba(0,0,0,0.35); border: 1px solid var(--border-medium); border-radius: var(--radius-sm); color: var(--text-main); font-family: var(--font-mono); font-size: 0.78rem; padding: 10px; resize: vertical;" placeholder="Paste any invoice, hotel bill, software receipt or contractor invoice here..."></textarea>
+                    <button id="btn-run-custom-gemma" class="btn btn-primary btn-sm" style="align-self: flex-start;">
+                      ⚡ Run Gemma 2 Local Extraction
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Raw Document Preview Card -->
+              <div class="card-glass">
+                <div class="card-header">
+                  <h3 class="card-title">Original Receipt Text Preview</h3>
+                  <span id="ocr-status-pill" class="status-chip paid">Ready</span>
+                </div>
+                <pre id="raw-document-text" style="font-family: var(--font-mono); font-size: 0.8rem; background: rgba(0,0,0,0.3); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); color: var(--text-muted); white-space: pre-wrap; max-height: 220px; overflow-y: auto;">Drop a receipt above or click one of the sample test receipts to run local Gemma 2 extraction.</pre>
+              </div>
+            </div>
+
+            <!-- Right: Gemma 2 Structured Extraction & Schedule C Audit Result -->
+            <div class="card-glass card-glass-glow" id="extraction-result-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Gemma 2 Tax Audit Extraction</h3>
+                  <p class="card-subtitle">IRS Schedule C classification & deduction justification</p>
+                </div>
+                <span class="engine-badge gemma" id="extract-runtime-badge">Gemma 2 (Local)</span>
+              </div>
+
+              <!-- Live Execution Telemetry Bar (Sentry Agent Tracing Ready) -->
+              <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.25); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 8px 12px; margin-bottom: 16px; font-size: 0.72rem; font-family: var(--font-mono); color: var(--text-dim);">
+                <span>Latency: <strong id="extract-latency" style="color: var(--accent-cyan);">185 ms</strong></span>
+                <span>Tokens: <strong id="extract-tokens" style="color: var(--accent-amber);">142</strong></span>
+                <span>Confidence: <strong id="extract-confidence" style="color: #34d399;">99.2%</strong></span>
+              </div>
+
+              <div id="extraction-content">
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid var(--border-subtle);">
+                    <span style="color: var(--text-dim);">Merchant / Vendor</span>
+                    <strong id="extract-vendor" style="color: var(--text-main);">Adobe Systems Incorporated</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid var(--border-subtle);">
+                    <span style="color: var(--text-dim);">Document Date</span>
+                    <span id="extract-date" class="stat-value mono" style="font-size: 0.95rem;">2026-10-10</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid var(--border-subtle);">
+                    <span style="color: var(--text-dim);">Total Amount</span>
+                    <strong id="extract-total" class="stat-value mono" style="font-size: 1.25rem; color: var(--accent-cyan);">$659.88</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid var(--border-subtle);">
+                    <span style="color: var(--text-dim);">Schedule C Category</span>
+                    <span id="extract-category" class="status-chip deductible">Software & Subscriptions (Line 18)</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid var(--border-subtle);">
+                    <span style="color: var(--text-dim);">Allowable Deduction</span>
+                    <strong id="extract-deductible" style="color: #34d399;">100% ($659.88)</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid var(--border-subtle);">
+                    <span style="color: var(--text-dim);">Estimated Tax Dollars Saved</span>
+                    <strong id="extract-tax-saved" style="color: var(--accent-violet);">+$211.16</strong>
+                  </div>
+
+                  <!-- Audit Defense Justification Box -->
+                  <div style="background: rgba(79, 172, 254, 0.06); border: 1px solid var(--border-highlight); border-radius: var(--radius-sm); padding: 14px;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                      <span style="font-size: 0.85rem;">🛡️</span>
+                      <strong style="font-size: 0.82rem; color: var(--accent-cyan);">IRS Audit Defense Rationale (Gemma 2)</strong>
+                    </div>
+                    <p id="extract-justification" style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5;">
+                      Software suites utilized exclusively for client design production and digital deliverables qualify for 100% deduction under IRC § 162(a) as ordinary and necessary business expenses.
+                    </p>
+                  </div>
+
+                  <button id="btn-save-extracted-expense" class="btn btn-primary" style="margin-top: 8px;">
+                    ✓ Add to Ledger & Deductions
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 3: TABPFN CASHFLOW & RISK RADAR
+             ========================================== -->
+        <section id="view-tabpfn" class="view-section">
+          <div class="card-glass" style="margin-bottom: 24px;">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">TabPFN Client Late-Payment Probability Matrix</h3>
+                <p class="card-subtitle">Zero-shot tabular classification trained on historical invoice intervals and payment delays</p>
+              </div>
+              <span class="engine-badge tabpfn">TabPFN 3.5 Active</span>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Invoice ID</th>
+                    <th>Client Name</th>
+                    <th>Scope & Milestone</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>TabPFN Risk Score</th>
+                    <th>Risk Category</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="tabpfn-invoices-tbody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tabular CSV Simulation & Anomaly Diagnostics -->
+          <div class="grid-split-7-5">
+            <div class="card-glass">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Raw Financial Ledger (CSV Ingestion)</h3>
+                  <p class="card-subtitle">Local bank export data used for TabPFN tabular inference</p>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="file" id="file-input-bank-csv" accept=".csv" style="display: none;">
+                  <button class="btn btn-primary btn-sm" id="btn-upload-bank-csv">📁 Ingest CSV</button>
+                  <button class="btn btn-secondary btn-sm" id="btn-load-sample-csv">📥 Load 25-Row Sample</button>
+                  <button class="btn btn-secondary btn-sm" id="btn-export-csv">Export</button>
+                </div>
+              </div>
+              <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                <table class="data-table" id="tabular-ledger-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Description</th>
+                      <th>Category</th>
+                      <th>Amount</th>
+                      <th>Schedule C</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tabular-ledger-tbody">
+                    <!-- Injected via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card-glass">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Runway Sensitivity Matrix</h3>
+                  <p class="card-subtitle">Interactive Bayesian stress test</p>
+                </div>
+                <span class="engine-badge tabpfn" id="simulated-runway-badge">4.5 mo Runway</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <!-- Interactive Stress Slider 1: Late Client Inflow Lag -->
+                <div style="background: rgba(255,255,255,0.02); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 8px;">
+                    <span>Simulate Client Payment Lag:</span>
+                    <strong id="val-delay-days" style="color: #fbbf24; font-family: var(--font-mono);">0 days delay</strong>
+                  </div>
+                  <input type="range" id="slider-delay-days" min="0" max="60" value="0" step="5" style="width: 100%; accent-color: var(--accent-amber); cursor: pointer;">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim); margin-top: 4px;">
+                    <span>On-time (0d)</span>
+                    <span>Net-45 (+15d)</span>
+                    <span>Delinquent (+60d)</span>
+                  </div>
+                </div>
+
+                <!-- Interactive Stress Slider 2: Expense Reduction / Anomaly Fix -->
+                <div style="background: rgba(255,255,255,0.02); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 8px;">
+                    <span>Simulate Trimming Unused SaaS:</span>
+                    <strong id="val-expense-cut" style="color: #34d399; font-family: var(--font-mono);">0% reduction</strong>
+                  </div>
+                  <input type="range" id="slider-expense-cut" min="0" max="30" value="0" step="5" style="width: 100%; accent-color: var(--accent-emerald); cursor: pointer;">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim); margin-top: 4px;">
+                    <span>Baseline (0%)</span>
+                    <span>Trim Subscriptions (-15%)</span>
+                    <span>Lean Mode (-30%)</span>
+                  </div>
+                </div>
+
+                <!-- Live Scenario Readouts -->
+                <div style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+                    <span>Projected 90-Day Trajectory:</span>
+                    <strong id="sensitivity-projected-val" style="color: var(--accent-cyan); font-family: var(--font-mono);">$21,200</strong>
+                  </div>
+                  <div class="risk-meter-track"><div id="sensitivity-meter-fill" class="risk-meter-fill low" style="width: 72%;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 4: SCHEDULE C TAX CENTER
+             ========================================== -->
+        <section id="view-tax" class="view-section">
+          <div class="grid-split-8-4" style="margin-bottom: 24px;">
+            <div class="card-glass">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">IRS Schedule C Expense Ledger</h3>
+                  <p class="card-subtitle">All write-offs backed by Gemma 2 audit rationales</p>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                  <button class="btn btn-primary btn-sm" id="btn-export-tax-summary">
+                    Export Schedule C (CSV)
+                  </button>
+                  <button class="btn btn-secondary btn-sm" id="btn-export-quickbooks">
+                    QuickBooks / Xero CSV
+                  </button>
+                  <button class="btn btn-secondary btn-sm" id="btn-print-cpa-report">
+                    🖨️ Print CPA Statement
+                  </button>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Vendor</th>
+                      <th>Date</th>
+                      <th>Category</th>
+                      <th>Schedule C Line</th>
+                      <th>Gross</th>
+                      <th>Deductible %</th>
+                      <th>Write-Off</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tax-expenses-tbody">
+                    <!-- Injected via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Tax Summary Box -->
+            <div class="card-glass">
+              <div class="card-header">
+                <h3 class="card-title">Tax Savings Summary</h3>
+                <span class="status-chip paid">Ready to File</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <div style="padding: 16px; background: rgba(16, 185, 129, 0.08); border: 1px solid var(--border-success); border-radius: var(--radius-md);">
+                  <span style="font-size: 0.75rem; text-transform: uppercase; color: #34d399; font-weight: 600;">Total Tax Dollars Preserved</span>
+                  <div class="stat-value mono" id="tax-total-savings-display" style="color: #34d399; margin: 6px 0;">$5,240</div>
+                  <span style="font-size: 0.75rem; color: var(--text-dim);">Based on 30% combined federal & self-employment tax rate</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.82rem;">
+                  <div style="display: flex; justify-content: space-between; color: var(--text-muted);">
+                    <span>Total Gross Expenses:</span>
+                    <strong id="tax-gross-expenses" style="color: var(--text-main);">$17,460</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; color: var(--text-muted);">
+                    <span>Net Deductible Expenses:</span>
+                    <strong id="tax-net-deductible" style="color: var(--accent-cyan);">$16,210</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; color: var(--text-muted);">
+                    <span>Audit Documentation Completeness:</span>
+                    <strong style="color: #34d399;">100% Verified</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 5: VOICE EXPENSE LOG (ELEVENLABS)
+             ========================================== -->
+        <section id="view-voice" class="view-section">
+          <div class="card-glass" style="max-width: 720px; margin: 0 auto;">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">ElevenLabs Voice Expense Dictation</h3>
+                <p class="card-subtitle">Speak your business expenses on the go; structured and categorized instantly</p>
+              </div>
+              <span class="engine-badge elevenlabs">ElevenLabs Speech</span>
+            </div>
+
+            <div style="text-align: center; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+              <div class="audio-wave-container" id="audio-waveform">
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+              </div>
+
+              <button id="btn-toggle-recording" class="btn btn-ai-glow" style="padding: 14px 28px; font-size: 1rem; border-radius: var(--radius-pill);">
+                <span id="voice-record-icon">🎙️</span>
+                <span id="voice-record-text">Start Voice Memo</span>
+              </button>
+
+              <p style="font-size: 0.82rem; color: var(--text-dim); max-width: 480px;">
+                Try speaking: <em>"Spent $48.50 at Blue Bottle Coffee having a lunch strategy meeting with client Alex Rivera discussing brand design."</em>
+              </p>
+
+              <!-- Quick Voice Presets -->
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 10px;">
+                <button class="btn btn-secondary btn-sm voice-preset-btn" data-text="Spent $35.00 on parking at client downtown office for project presentation.">
+                  🅿️ "Spent $35 on client parking..."
+                </button>
+                <button class="btn btn-secondary btn-sm voice-preset-btn" data-text="Paid $120.00 for annual domain renewal on Namecheap for client staging portal.">
+                  🌐 "Paid $120 for domain renewal..."
+                </button>
+                <button class="btn btn-secondary btn-sm voice-preset-btn" data-text="Purchased $75.00 of specialized photo backdrop paper at B&H Photo for commercial shoot.">
+                  📸 "Purchased $75 backdrop paper..."
+                </button>
+              </div>
+            </div>
+
+            <!-- Voice Transcript Card -->
+            <div style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px; margin-top: 10px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); font-weight: 600;">Live Transcript & Gemma 2 Parsing:</span>
+              <p id="voice-transcript-output" style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent-cyan); margin-top: 8px; min-height: 48px;">
+                Click "Start Voice Memo" or pick a sample preset above to test real-time voice logging.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 6: SOVEREIGN PRIVACY GUARD
+             ========================================== -->
+        <section id="view-privacy" class="view-section">
+          <div class="card-glass" style="margin-bottom: 24px;">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Sovereign Zero-Leak Telemetry Monitor</h3>
+                <p class="card-subtitle">Real-time verification that sensitive financial data and client contracts never leave your device</p>
+              </div>
+              <span class="engine-badge local">Zero Egress Verified</span>
+            </div>
+
+            <div class="grid-cols-3" style="margin-bottom: 24px;">
+              <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid var(--border-success); border-radius: var(--radius-md); padding: 18px;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; color: #34d399; font-weight: 600;">Outbound Financial Telemetry</span>
+                <div class="stat-value mono" style="color: #34d399; margin: 8px 0;">0.00 KB</div>
+                <span style="font-size: 0.75rem; color: var(--text-dim);">Strict air-gap policy enforced</span>
+              </div>
+
+              <div style="background: rgba(79, 172, 254, 0.06); border: 1px solid var(--border-highlight); border-radius: var(--radius-md); padding: 18px;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--accent-cyan); font-weight: 600;">Local Model Execution</span>
+                <div class="stat-value mono" style="color: var(--accent-cyan); margin: 8px 0;">100% Local</div>
+                <span style="font-size: 0.75rem; color: var(--text-dim);">Gemma 2 + TabPFN sandbox</span>
+              </div>
+
+              <div style="background: rgba(142, 45, 226, 0.06); border: 1px solid rgba(142, 45, 226, 0.3); border-radius: var(--radius-md); padding: 18px;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; color: #c084fc; font-weight: 600;">Data Sovereign Encryption</span>
+                <div class="stat-value mono" style="color: #c084fc; margin: 8px 0;">AES-256</div>
+                <span style="font-size: 0.75rem; color: var(--text-dim);">Encrypted in browser IndexedDB</span>
+              </div>
+            </div>
+
+            <!-- Sentry Agent Tracing & Observability -->
+            <div class="card-glass" style="margin-top: 24px; margin-bottom: 24px;">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Sentry Agent Tracing & Observability</h3>
+                  <p class="card-subtitle">Real-time OpenTelemetry execution spans across Gemma 2, TabPFN, and ElevenLabs</p>
+                </div>
+                <span class="engine-badge gemma" style="border-color: rgba(142, 45, 226, 0.4); color: #c084fc;">Sentry Tracing</span>
+              </div>
+              <div id="sentry-waterfall-container">
+                <!-- Rendered via sentryTracing.js -->
+              </div>
+            </div>
+
+            <!-- Network Packet Log -->
+            <div class="card-glass" style="margin-bottom: 24px;">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Air-Gap Traffic & Packet Inspection Log</h3>
+                  <p class="card-subtitle">Proof of 0 financial bytes transmitted to 3rd party cloud infrastructure</p>
+                </div>
+                <span class="engine-badge local">Air-Gapped Loopback</span>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Timestamp</th>
+                      <th>Traffic Type</th>
+                      <th>Destination Host</th>
+                      <th>Outbound Bytes</th>
+                      <th>Cryptographic Audit</th>
+                      <th>Details</th>
+                    </tr>
+                  </thead>
+                  <tbody id="privacy-packet-tbody">
+                    <!-- Rendered via privacyGuard.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Deep Architectural Defense -->
+            <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 24px;">
+              <h4 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; color: var(--text-main);">
+                Why Open Innovation Matters for Freelance Financial Tools:
+              </h4>
+              <ul style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.8; padding-left: 20px;">
+                <li><strong>Strict Client NDA Protection:</strong> Freelancers frequently sign non-disclosure agreements with enterprise clients. Uploading invoices with client project details to closed APIs (OpenAI/Anthropic) directly risks breach of contract. Open-weight models guarantee confidential client data stays on your machine.</li>
+                <li><strong>Zero Marginal Inference Cost:</strong> High-volume invoice and receipt scanning via closed cloud APIs rapidly erodes micro-SaaS margins. Running Gemma 2 locally costs $0 per document.</li>
+                <li><strong>Deterministic Tabular ML:</strong> Proprietary generative LLMs hallucinate numbers on spreadsheets. TabPFN (Prior Labs) is a specialized tabular foundation model built specifically for zero-shot tabular classification and Bayesian time-series without arithmetic errors.</li>
+                <li><strong>No Vendor Lock-In or Deprecation:</strong> Your accounting assistant will continue working indefinitely, even without an internet connection on an airplane or remote client site.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ==========================================
+       MODAL: COMMERCIAL SIDE HUSTLE LICENSE
+       ========================================== -->
+  <div class="modal-overlay" id="modal-commercial">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="modal-close-commercial">✕</button>
+      <div style="text-align: center; margin-bottom: 24px;">
+        <span class="engine-badge local" style="margin-bottom: 8px;">Side Hustle Commercial Model</span>
+        <h3 style="font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em;">VaultFlow AI License Tiers</h3>
+        <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 4px;">
+          Built for freelancers and agency owners who refuse to compromise their financial privacy.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+        <!-- Tier 1: Lifetime -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 2px solid var(--accent-cyan); border-radius: var(--radius-md); padding: 20px; position: relative;">
+          <span style="position: absolute; top: -10px; right: 14px; background: var(--grad-primary); color: #07090e; font-size: 0.68rem; font-weight: 800; padding: 2px 8px; border-radius: var(--radius-pill);">MOST POPULAR</span>
+          <h4 style="font-size: 1rem; font-weight: 700;">Sovereign Lifetime</h4>
+          <div style="font-size: 1.8rem; font-weight: 800; font-family: var(--font-mono); margin: 10px 0;">$29 <span style="font-size: 0.8rem; color: var(--text-dim); font-weight: 400;">one-time</span></div>
+          <ul style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.8; list-style: none;">
+            <li>✓ 100% Local Gemma 2 Offline Scanner</li>
+            <li>✓ Unlimited TabPFN Cashflow Forecasts</li>
+            <li>✓ Schedule C Tax Deductions Export</li>
+            <li>✓ Lifetime software updates</li>
+          </ul>
+          <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 14px;">Purchase License ($29)</button>
+        </div>
+
+        <!-- Tier 2: Cloud Sync -->
+        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="font-size: 1rem; font-weight: 700;">Private Cloud (Render)</h4>
+          <div style="font-size: 1.8rem; font-weight: 800; font-family: var(--font-mono); margin: 10px 0;">$9 <span style="font-size: 0.8rem; color: var(--text-dim); font-weight: 400;">/ month</span></div>
+          <ul style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.8; list-style: none;">
+            <li>✓ Dedicated Render container deployment</li>
+            <li>✓ Mobile receipt scanning sync</li>
+            <li>✓ Encrypted team multi-currency vault</li>
+            <li>✓ Priority bug fixes & support</li>
+          </ul>
+          <button class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 14px;">Start 14-Day Trial</button>
+        </div>
+      </div>
+
+      <!-- License Key Activation Box -->
+      <div style="margin-top: 18px; border-top: 1px solid var(--border-subtle); padding-top: 14px; text-align: left;">
+        <label style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Already purchased? Activate Pro License:</label>
+        <div style="display: flex; gap: 8px; margin-top: 6px;">
+          <input type="text" id="input-license-key" placeholder="e.g. VAULT-PRO-2026-X89" style="flex-grow: 1; background: rgba(0,0,0,0.3); border: 1px solid var(--border-medium); border-radius: var(--radius-sm); color: var(--text-main); font-family: var(--font-mono); font-size: 0.82rem; padding: 8px 12px;">
+          <button id="btn-activate-license" class="btn btn-primary btn-sm">Activate Key</button>
+        </div>
+        <div id="license-activation-status" style="font-size: 0.75rem; margin-top: 6px; display: none;"></div>
+      </div>
+
+      <div style="text-align: center; font-size: 0.78rem; color: var(--text-dim); margin-top: 14px;">
+        Compare to QuickBooks ($35–$90/mo) or FreshBooks ($38/mo). VaultFlow is 100% private and 1/10th the cost.
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/mockData.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/gemmaEngine.js"></script>
+  <script src="js/tabpfnEngine.js"></script>
+  <script src="js/voiceLogger.js"></script>
+  <script src="js/sentryTracing.js"></script>
+  <script src="js/privacyGuard.js"></script>
+  <script src="js/chartEngine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
