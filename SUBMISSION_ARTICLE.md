@@ -50,7 +50,10 @@ VaultFlow AI is packaged as an independent micro-SaaS:
 
 ## Code
 
-The complete source code is open-sourced under the MIT License:
+- **GitHub Repository**: [https://github.com/Koushiklalala/vaultflow-ai](https://github.com/Koushiklalala/vaultflow-ai)
+- **License**: Open-Source (MIT)
+
+The complete source code is structured as follows:
 
 - **Repository Structure**:
   - `index.html`: Semantic, responsive glassmorphism financial interface with zero external build step dependencies.

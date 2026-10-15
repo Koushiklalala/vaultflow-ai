@@ -72,7 +72,7 @@ VaultFlow AI is built with zero mandatory external build steps:
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/your-username/vaultflow-ai.git
+git clone https://github.com/Koushiklalala/vaultflow-ai.git
 cd vaultflow-ai
 
 # 2. Start local HTTP server
