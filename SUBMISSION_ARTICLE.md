@@ -153,3 +153,13 @@ I am officially entering VaultFlow AI into the following challenge tracks:
 3. **Best Use of Render ($200 - Featured)**: Includes a full `render.yaml` 1-click blueprint and multi-stage `Dockerfile` to deploy VaultFlow AI as a self-hosted cloud instance.
 4. **Best Use of Sentry Agent Tracing ($100 - Partner)**: Implements OpenTelemetry-compatible agent tracing across Gemma, TabPFN, and ElevenLabs operations, visualized through an interactive execution waterfall in the UI.
 5. **Best Use of ElevenLabs ($100 - Partner)**: Features voice-to-ledger expense dictation with natural speech recognition and audio confirmation feedback.
+
+---
+
+## 🤖 Agent Development Session (DevRelay)
+
+The full agent session tracing the step-by-step architecture, code generation, TabPFN machine learning integration, and Render cloud deployment has been saved to DEV via DevRelay:
+
+{% agent_session 895 %}
+
+*Session Transcript URL: [https://dev.to/agent_sessions/building-vaultflow-ai-sovereign-cashflow-forecaster-tax-intelligence-engine-uzicn3](https://dev.to/agent_sessions/building-vaultflow-ai-sovereign-cashflow-forecaster-tax-intelligence-engine-uzicn3)*
