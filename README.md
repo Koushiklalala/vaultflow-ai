@@ -7,6 +7,10 @@
 [![Zero Cloud Leak](https://img.shields.io/badge/Privacy-100%25_Air--Gapped-10b981.svg)](#sovereign-privacy)
 [![Live on Render](https://img.shields.io/badge/Live_Demo-vaultflow--ai.onrender.com-46e3b7.svg)](https://vaultflow-ai.onrender.com)
 
+<p align="center">
+  <img src="docs/images/vaultflow_hero_cover.jpg" alt="VaultFlow AI Hero Banner" width="100%" />
+</p>
+
 > Built for the **Hacktoberfest Open-Source AI Challenge: Week 2 — Side Hustle**.  
 > An open-weight financial copilot that runs 100% locally on a laptop, ensuring sensitive freelancer client invoices, rates, and NDAs never leave the device while delivering zero-shot tabular cashflow forecasting.  
 >  
@@ -52,6 +56,15 @@ graph TD
     H -.->|Telemetry Monitoring| C
     I[Sovereign Privacy Guard] -->|Audits Outbound Network| J[0.00 KB Egress Verified]
 ```
+
+<p align="center">
+  <img src="docs/images/vaultflow_architecture.jpg" alt="VaultFlow AI System Architecture" width="100%" />
+</p>
+
+### 🖥️ Dashboard Interface Preview
+<p align="center">
+  <img src="docs/images/vaultflow_dashboard_ui.png" alt="VaultFlow AI Dashboard" width="100%" />
+</p>
 
 ---
 

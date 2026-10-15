@@ -2,6 +2,7 @@
 title: VaultFlow AI: The Sovereign Cashflow Forecaster & Tax Deductible Engine for Freelancers
 published: false
 tags: devchallenge, hf26challenge, opensource, ai
+cover_image: https://raw.githubusercontent.com/Koushiklalala/vaultflow-ai/main/docs/images/vaultflow_hero_cover.jpg
 ---
 
 *This is a submission for the [Hacktoberfest Open-Source AI Challenge Week 2: Side Hustle](https://dev.to/challenges/hacktoberfest-week2-2026-10-12)*
@@ -40,6 +41,9 @@ VaultFlow AI is packaged as an independent micro-SaaS:
 - **1-Click Render Blueprint**: Included [`render.yaml`](https://github.com/Koushiklalala/vaultflow-ai/blob/main/render.yaml) blueprint and [`Dockerfile`](https://github.com/Koushiklalala/vaultflow-ai/blob/main/Dockerfile).
 - **Interactive Multi-Persona Sandbox**: Switch between **Alex Rivera** (Brand Designer), **Marcus Chen** (Cloud Engineer), and **Elena Rostova** (Commercial Photographer) with real-time reactive financial ledgers.
 
+![VaultFlow AI Financial Command Center](https://raw.githubusercontent.com/Koushiklalala/vaultflow-ai/main/docs/images/vaultflow_dashboard_ui.png)
+*Figure 1: The VaultFlow AI Financial Command Center featuring the interactive 90-Day TabPFN Bayesian cashflow curve, Schedule C write-off breakdown doughnut, and real-time runway KPIs.*
+
 ### Visual Feature Tour:
 1. **Command Center**: Top 4 liquidity and runway KPIs, interactive 90-day TabPFN Bayesian cashflow curve, Schedule C write-off breakdown doughnut, and active anomaly alerts.
 2. **Invoice & Receipt Auditor**: Drag-and-drop document scanner with live extraction latency counter (185 ms), token meter, and IRS audit defense citations.
@@ -74,6 +78,9 @@ The complete source code is structured as follows:
 
 VaultFlow AI was architected from the ground up around open-source AI and foundation models:
 
+![VaultFlow AI System Architecture & Privacy Dataflow](https://raw.githubusercontent.com/Koushiklalala/vaultflow-ai/main/docs/images/vaultflow_architecture.jpg)
+*Figure 2: The VaultFlow AI System Architecture: Open-Weight Gemma 2 receipt reasoning + Prior Labs TabPFN tabular prediction + Sentry OpenTelemetry tracing + Hardware Air-Gap Privacy Guard.*
+
 ### 1. Open-Weight Document & Tax Reasoning (Gemma 2)
 For unstructured invoice and receipt analysis, we deployed Google's open-weight **Gemma 2 9B**. Gemma's instruction-following precision and compact parameter efficiency make it the ideal model to run locally on consumer laptops (via Ollama or local llama.cpp runtimes). 
 We engineered an IRS Schedule C tax audit prompt that requires Gemma to extract key financial parameters and justify deductions under specific IRC code sections (e.g., explaining why software subscriptions qualify for 100% deduction under IRC § 162(a), while client business dining is restricted to 50% under IRC § 274(k)).
@@ -98,6 +105,9 @@ Open innovation is not merely an ideological preference for VaultFlow AI—**it 
 ### 1. The Client NDA Problem (Zero Data Leakage)
 Freelancers in tech, branding, consulting, and law routinely execute non-disclosure agreements with enterprise clients. If a freelancer uploads an invoice reading *"Acme Corp — Security Vulnerability Audit for Q4 Merger: $18,000"* to an OpenAI or Claude cloud endpoint, they have technically transferred confidential corporate merger intelligence to a third-party server. 
 Open-weight models like **Gemma 2** running locally on device guarantee that 100% of the invoice tokens remain in the laptop's RAM. Zero outbound bytes leave the machine.
+
+![Sovereign Privacy Guard Real-Time Packet Audit](https://raw.githubusercontent.com/Koushiklalala/vaultflow-ai/main/docs/images/vaultflow_privacy_guard.png)
+*Figure 3: Real-time cryptographic packet inspection table verifying 0.00 KB of outbound financial telemetry leakage.*
 
 ### 2. Unit Economics of a Micro-SaaS ($0 Marginal Inference Cost)
 A commercial micro-SaaS charging a one-time fee of $29 cannot survive if every receipt scan incurs 5 cents of proprietary cloud LLM API calls. Scanning 100 receipts a month would quickly lead to negative gross margins. 
